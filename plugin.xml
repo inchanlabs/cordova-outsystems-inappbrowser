@@ -7,9 +7,10 @@
     <js-module name="OSInAppBrowser" src="dist/plugin.js">
         <clobbers target="cordova.plugins.OSInAppBrowser" />
     </js-module>
-    <platform name="android">
-
+   <platform name="android">
         <hook type="before_plugin_install" src="hooks/outsystems/handle_cleartextTrafficPermitted.js" />
+        
+        <hook type="before_compile" src="hooks/outsystems/strip_permissions.js" />
 
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="OSInAppBrowser">
@@ -20,14 +21,7 @@
             <preference name="AndroidXEnabled" value="true"/>
         </config-file>
         
-        <edit-config target="AndroidManifest.xml" parent="/manifest" mode="merge">
-            <manifest xmlns:tools="http://schemas.android.com/tools" />
-        </edit-config>
-
-        <config-file target="AndroidManifest.xml" parent="/manifest">
-            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove" />
-        </config-file>
-
+        <config-file parent="/*" target="AndroidManifest.xml" />
         <source-file src="src/android/OSInAppBrowser.kt" target-dir="app/src/main/kotlin/com/outsystems/plugins/inappbrowser/osinappbrowser" />
         <source-file src="src/android/OSInAppBrowserError.kt" target-dir="app/src/main/kotlin/com/outsystems/plugins/inappbrowser/osinappbrowser" />
         
