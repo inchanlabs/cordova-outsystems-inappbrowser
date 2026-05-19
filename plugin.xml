@@ -20,7 +20,10 @@
             <preference name="AndroidXEnabled" value="true"/>
         </config-file>
         
-        <config-file parent="/*" target="AndroidManifest.xml" />
+        <config-file parent="/*" target="AndroidManifest.xml" xmlns:tools="http://schemas.android.com/tools">
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove" />
+        </config-file>
+
         <source-file src="src/android/OSInAppBrowser.kt" target-dir="app/src/main/kotlin/com/outsystems/plugins/inappbrowser/osinappbrowser" />
         <source-file src="src/android/OSInAppBrowserError.kt" target-dir="app/src/main/kotlin/com/outsystems/plugins/inappbrowser/osinappbrowser" />
         
